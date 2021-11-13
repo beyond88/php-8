@@ -30,5 +30,20 @@ foo(
     d: 'value d',
 );
 ```
+## Match expression
+You could call it the big brother of the switch expression: match can return values, doesn't require break statements, can combine conditions, uses strict type comparisons and doesn't do any type coercion.
 
+It looks like this:
 
+```
+$result = match($input) {
+    0 => "hello",
+    '1', '2', '3' => "world",
+};
+```
+
+First of all, the match expression is significantly shorter:
+
+- it doesn't require a break statement
+- it can combine different arms into one using a comma
+- it returns a value, so you only have to assign value once
