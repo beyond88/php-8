@@ -11,5 +11,11 @@ public function foo(Foo|null $foo): void;
 public function bar(?Bar $bar): void;
 ```
 
+## The nullsafe operator
+
+```
+$dateAsString = $booking->getStartDate()?->asDateTimeString();
+```
+
 
 
