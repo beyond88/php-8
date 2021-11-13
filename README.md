@@ -48,7 +48,7 @@ First of all, the match expression is significantly shorter:
 - it can combine different arms into one using a comma
 - it returns a value, so you only have to assign value once
 
-## Constructor property promotion rfc
+## Constructor property promotion
 Property promotion allows you to combine class fields, constructor definition and variable assignments all into one syntax, in the construct parameter list.
 
 ```
