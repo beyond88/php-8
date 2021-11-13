@@ -32,6 +32,22 @@
         500 => throw new ServerError(),
         default => 'unknown status code',
     };
+
+    //Complex conditions and performance
+
+    $message = [
+        $this->matchesRegex($line) => 'match A',
+        $this->matchesOtherRegex($line) => 'match B',
+    ][$line] ?? 'no match';
+
+    //Throwing exceptions
+    $message = match ($statusCode) {
+        200 => null,
+        500 => throw new ServerError(),
+        default => 'unknown status code',
+    };    
+
+
     
     
     
