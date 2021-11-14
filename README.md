@@ -127,3 +127,43 @@ $foo = $bar['offset'] ?? throw new OffsetDoesNotExist('offset');
 
 ```
 
+## Non-capturing catches
+Whenever you wanted to catch an exception before PHP 8, you had to store it in a variable, regardless whether you used that variable or not. With non-capturing catches, you can omit the variable, so instead of this:
+
+```
+
+try {
+    // Something goes wrong
+} catch (MySpecialException $exception) {
+    Log::error("Something went wrong");
+}
+
+```
+
+You can now do this:
+
+```
+
+try {
+    // Something goes wrong
+} catch (MySpecialException) {
+    Log::error("Something went wrong");
+}
+
+```
+
+## Trailing comma in parameter lists
+Already possible when calling a function, trailing comma support was still lacking in parameter lists. It's now allowed in PHP 8, meaning you can do the following:
+
+```
+
+public function(
+    string $parameterA,
+    int $parameterB,
+    Foo $objectfoo,
+) {
+    // …
+}
+
+```
+
