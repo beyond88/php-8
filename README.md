@@ -6,21 +6,26 @@ Union types are a collection of two or more types which indicate that either one
 Note that ```void``` can never be part of a union type, since it indicates "no return value at all". Furthermore, nullable unions can be written using ```|null```, or by using the existing ? notation:<br>
 
 ```
+
 public function foo(Foo|null $foo): void;
 
 public function bar(?Bar $bar): void;
+
 ```
 
 ## The nullsafe operator
 
 ```
+
 $dateAsString = $booking->getStartDate()?->asDateTimeString();
+
 ```
 
 ## Named arguments
 Named arguments allow you to pass in values to a function, by specifying the value name, so that you don't have to take their order into consideration, and you can also skip optional parameters!
 
 ```
+
 function foo(string $a, string $b, ?string $c = null, ?string $d = null) 
 { /* … */ }
 
@@ -29,6 +34,7 @@ foo(
     a: 'value a', 
     d: 'value d',
 );
+
 ```
 ## Match expression
 You could call it the big brother of the switch expression: match can return values, doesn't require break statements, can combine conditions, uses strict type comparisons and doesn't do any type coercion.
@@ -36,10 +42,12 @@ You could call it the big brother of the switch expression: match can return val
 It looks like this:
 
 ```
+
 $result = match($input) {
     0 => "hello",
     '1', '2', '3' => "world",
 };
+
 ```
 
 First of all, the match expression is significantly shorter:
@@ -52,6 +60,7 @@ First of all, the match expression is significantly shorter:
 Property promotion allows you to combine class fields, constructor definition and variable assignments all into one syntax, in the construct parameter list.
 
 ```
+
 class CustomerDTO
 {
     public function __construct(
@@ -60,12 +69,14 @@ class CustomerDTO
         public DateTimeImmutable $birth_date,
     ) {}
 }
+
 ```
 ## New static return type 
 
 While it was already possible to return self, static wasn't a valid return type until PHP 8. Given PHP's dynamically typed nature, it's a feature that will be useful to many developers.
 
 ```
+
 class Foo
 {
     public function test(): static
@@ -73,6 +84,7 @@ class Foo
         return new static();
     }
 }
+
 ```
 
 ## New mixed type 
@@ -98,8 +110,20 @@ Note that mixed can also be used as a parameter or property type, not just as a 
 
 Also note that since mixed already includes null, it's not allowed to make it nullable. The following will trigger an error:
 ```
+
 // Fatal error: Mixed types cannot be nullable, null is already part of the mixed type.
 function bar(): ?mixed {}
+
 ```
 
+## Throw expression
+throw from being a statement to being an expression, which makes it possible to throw exception in many new places:
+
+```
+
+$triggerError = fn () => throw new MyError();
+
+$foo = $bar['offset'] ?? throw new OffsetDoesNotExist('offset');
+
+```
 
